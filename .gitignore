@@ -1,0 +1,8 @@
+syntax: glob
+
+/target/
+/downloads/
+/.vscode/
+/*.code-workspace
+
+/Cargo.lock
