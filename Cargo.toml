@@ -1,7 +1,7 @@
 [package]
 name          = "smartcols-sys"
 description   = "Unsafe Rust bindings for libsmartcols"
-version       = "0.1.1" # Remember to update version in `html_root_url`.
+version       = "0.1.2" # Remember to update version in `html_root_url`.
 authors       = ["Koutheir Attouchi <koutheir.attouchi@microdoc.com>"]
 edition       = "2024"
 readme        = "README.md"
