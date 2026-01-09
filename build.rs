@@ -54,7 +54,7 @@ fn main() {
         } else {
             HEADER
         },
-    )
+    );
 }
 
 fn path_to_str(path: &Path) -> &str {
@@ -155,8 +155,7 @@ impl CompilerSearchPaths {
         let output = child.wait_with_output()?;
 
         if !output.status.success() {
-            return Err(io::Error::new(
-                io::ErrorKind::Other,
+            return Err(io::Error::other(
                 "Compiler failed to print search directories",
             ));
         }
@@ -210,8 +209,7 @@ impl CompilerSearchPaths {
         let output = child.wait_with_output()?;
 
         if !output.status.success() {
-            return Err(io::Error::new(
-                io::ErrorKind::Other,
+            return Err(io::Error::other(
                 "Compiler failed to print search directories",
             ));
         }
@@ -224,10 +222,7 @@ impl CompilerSearchPaths {
             .map(str::trim)
             .map(|line| line.trim_start_matches('='))
             .ok_or_else(|| {
-                io::Error::new(
-                    io::ErrorKind::Other,
-                    "Compiler search directories format is unrecognized",
-                )
+                io::Error::other("Compiler search directories format is unrecognized")
             })?;
 
         let mut paths = Vec::with_capacity(8);
@@ -345,11 +340,11 @@ fn find_and_output_lib_dir(
 
             for &lib_dir in &[link_path, &link_path.join(target), &link_path.join(triplet)] {
                 let lib_path = lib_dir.join(&file_name);
-                if let Ok(md) = lib_path.metadata() {
-                    if md.is_file() {
-                        output_lib_dir(lib_dir, &lib_path, static_lib);
-                        return;
-                    }
+                if let Ok(md) = lib_path.metadata()
+                    && md.is_file()
+                {
+                    output_lib_dir(lib_dir, &lib_path, static_lib);
+                    return;
                 }
             }
         }
@@ -365,7 +360,7 @@ fn find_and_output_lib_dir(
 }
 
 // See: https://github.com/rust-lang/rust-bindgen/issues/2136
-fn translate_rustc_target_to_clang(rustc_target: &str) -> Cow<str> {
+fn translate_rustc_target_to_clang(rustc_target: &str) -> Cow<'_, str> {
     if let Some(suffix) = rustc_target.strip_prefix("riscv32") {
         let suffix = suffix.trim_start_matches(|c| c != '-');
         Cow::Owned(format!("riscv32{suffix}"))
@@ -428,15 +423,15 @@ fn generate_bindings(
 
     bindings
         .write_to_file(out_dir.join("smartcols-sys.rs"))
-        .expect("smartcols-sys: Failed to write 'smartcols-sys.rs'")
+        .expect("smartcols-sys: Failed to write 'smartcols-sys.rs'");
 }
 
 fn find_file_in_dirs(path_suffix: &str, dirs: &[PathBuf]) -> io::Result<PathBuf> {
     for dir in dirs {
-        if let Ok(md) = dir.join(path_suffix).metadata() {
-            if md.file_type().is_file() {
-                return Ok(dir.clone());
-            }
+        if let Ok(md) = dir.join(path_suffix).metadata()
+            && md.file_type().is_file()
+        {
+            return Ok(dir.clone());
         }
     }
 

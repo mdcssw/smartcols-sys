@@ -1,9 +1,10 @@
 [package]
 name          = "smartcols-sys"
 description   = "Unsafe Rust bindings for libsmartcols"
-version       = "0.1.2" # Remember to update version in `html_root_url`.
+version       = "0.1.3" # Remember to update version in `html_root_url`.
 authors       = ["Koutheir Attouchi <koutheir.attouchi@microdoc.com>"]
 edition       = "2024"
+rust-version  = "1.88"
 readme        = "README.md"
 license       = "MIT"
 keywords      = ["ffi", "bindings", "table", "column", "formatting"]
@@ -24,8 +25,13 @@ categories = [
 #
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lints.clippy]
+#restriction = { level = "warn", priority = -1 }
+all      = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+
 [build-dependencies]
-bindgen = { version = "0.71" }
+bindgen = { version = "0.72" }
 walkdir = { version = "2" }
 dunce   = { version = "1" }
 cc      = { version = "1" }

@@ -4,7 +4,7 @@ use core::ptr;
 #[test]
 fn scols_get_library_version() {
     let mut version = ptr::null();
-    let r = unsafe { super::scols_get_library_version(&mut version) };
+    let r = unsafe { super::scols_get_library_version(&raw mut version) };
     assert!(r > 0);
 
     assert!(!version.is_null());
