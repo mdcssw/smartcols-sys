@@ -11,8 +11,8 @@ keywords      = ["ffi", "bindings", "table", "column", "formatting"]
 build         = "build.rs"
 links         = "smartcols"
 documentation = "https://docs.rs/smartcols-sys"
-homepage      = "https://github.com/mdcssw/smartcols-sys.git"
-repository    = "https://github.com/mdcssw/smartcols-sys.git"
+homepage      = "https://github.com/microdoc/smartcols-sys.git"
+repository    = "https://github.com/microdoc/smartcols-sys.git"
 
 categories = [
     "external-ffi-bindings",

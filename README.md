@@ -1,6 +1,6 @@
 [![crates.io](https://img.shields.io/crates/v/smartcols-sys.svg)](https://crates.io/crates/smartcols-sys)
 [![docs.rs](https://docs.rs/smartcols-sys/badge.svg)](https://docs.rs/smartcols-sys)
-[![license](https://img.shields.io/github/license/mdcssw/smartcols-sys?color=000000)](https://raw.githubusercontent.com/mdcssw/smartcols-sys/master/LICENSE.txt)
+[![license](https://img.shields.io/github/license/microdoc/smartcols-sys?color=000000)](https://raw.githubusercontent.com/microdoc/smartcols-sys/master/LICENSE.txt)
 
 # `smartcols-sys`: Unsafe Rust bindings for `libsmartcols`
 
